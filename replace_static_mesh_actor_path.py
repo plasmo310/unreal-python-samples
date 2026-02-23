@@ -4,7 +4,7 @@
 import unreal
 
 
-def log_static_mesh_paths(replace_from_dir, replace_to_dir):
+def replace_static_mesh_actor_paths(replace_from_dir, replace_to_dir):
     # 現在開いているレベル上の全アクターを取得
     all_actors = unreal.EditorLevelLibrary.get_all_level_actors()
 
@@ -21,7 +21,7 @@ def log_static_mesh_paths(replace_from_dir, replace_to_dir):
         if not static_mesh:
             continue
 
-        # プレフィックスを REPLACE_FROM_DIR から REPLACE_TO_DIR に置換
+        # プレフィックスを replace_from_dir から replace_to_dir に置換
         path = static_mesh.get_path_name()
         if path.startswith(replace_from_dir):
             new_path = replace_to_dir + path[len(replace_from_dir) :]
@@ -41,4 +41,4 @@ def log_static_mesh_paths(replace_from_dir, replace_to_dir):
 # TODO: Please Input Target Dirs.
 REPLACE_FROM_DIR = "/Game/Replace_From"
 REPLACE_TO_DIR = "/Game/Replace_To"
-log_static_mesh_paths(REPLACE_FROM_DIR, REPLACE_TO_DIR)
+replace_static_mesh_actor_paths(REPLACE_FROM_DIR, REPLACE_TO_DIR)
